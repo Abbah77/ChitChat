@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chitchat/models/search_model.dart';
 
-part 'dashboard_search_state.dart';
-
+// This is the parent file - it holds the imports and the class
 class DashboardSearchCubit extends Cubit<DashboardSearchState> {
   final SearchService _searchService;
   Timer? _debounceTimer;
@@ -31,7 +30,6 @@ class DashboardSearchCubit extends Cubit<DashboardSearchState> {
           results: results,
         ));
         
-        // Save to history
         await _searchService.saveToHistory(query);
       } catch (e) {
         emit(DashboardSearchError(e.toString()));
@@ -48,9 +46,7 @@ class DashboardSearchCubit extends Cubit<DashboardSearchState> {
     try {
       final history = await _searchService.getSearchHistory();
       emit(DashboardSearchHistoryLoaded(history: history));
-    } catch (e) {
-      // Don't emit error for history
-    }
+    } catch (e) { /* ignore */ }
   }
   
   Future<void> clearHistory() async {
@@ -70,9 +66,7 @@ class DashboardSearchCubit extends Cubit<DashboardSearchState> {
   }
 }
 
-// logic/dashboard_search_state.dart
-part of 'dashboard_search_cubit.dart';
-
+// These states were in the same file; I've moved them here clearly
 abstract class DashboardSearchState {
   const DashboardSearchState();
 }
@@ -87,22 +81,16 @@ class DashboardSearchLoading extends DashboardSearchState {
 
 class DashboardSearchError extends DashboardSearchState {
   final String message;
-  
   const DashboardSearchError(this.message);
 }
 
 class DashboardSearchSuccess extends DashboardSearchState {
   final String query;
   final List<SearchResult> results;
-  
-  const DashboardSearchSuccess({
-    required this.query,
-    required this.results,
-  });
+  const DashboardSearchSuccess({required this.query, required this.results});
 }
 
 class DashboardSearchHistoryLoaded extends DashboardSearchState {
   final List<SearchHistory> history;
-  
   const DashboardSearchHistoryLoaded({required this.history});
 }
