@@ -2219,10 +2219,10 @@ class UsersListModal extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Followers',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  title, // Fixed: Now uses the actual title variable
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
               IconButton(
@@ -2239,7 +2239,7 @@ class UsersListModal extends StatelessWidget {
                 final user = users[index];
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(user.profileImage),
+                    backgroundImage: CachedNetworkImageProvider(user.profileImage),
                   ),
                   title: Text(user.name),
                   subtitle: Text('@${user.username}'),
@@ -2247,7 +2247,7 @@ class UsersListModal extends StatelessWidget {
                       ? Container(
                           width: 8,
                           height: 8,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.green,
                           ),
