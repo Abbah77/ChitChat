@@ -3,14 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/story_widgets/story_circle.dart';
 import 'widgets/post_widgets/post_card.dart';
 import 'widgets/post_widgets/story_viewer.dart';
-import 'widget/search_page/animation.dart'; 
+import 'widget/search_page/animation.dart';
 import 'logic/dashboard_cubit.dart';
-import 'widgets/post_widgets/create_post_modal.dart';  
+import 'widgets/post_widgets/create_post_modal.dart';
 
 // Import your search screen and necessary dependencies
 import 'screens/search_screen.dart';
 import 'logic/dashboard_search_cubit.dart';
-import 'widget/search_page/animation.dart';
 
 class HomeFeedPage extends StatefulWidget {
   const HomeFeedPage({super.key});
@@ -27,7 +26,6 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
-    // Load dashboard initially
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<DashboardCubit>().initializeDashboard();
     });
@@ -52,21 +50,20 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
 
   Future<void> _handleRefresh() async {
     await context.read<DashboardCubit>().refreshDashboard();
-    // Small delay for better UX
     await Future.delayed(const Duration(milliseconds: 300));
   }
-  
-  void _showCreatePostModal(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    backgroundColor: Colors.transparent,
-    builder: (context) => const CreatePostModal(),
-  );
-}
 
+  void _showCreatePostModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const CreatePostModal(),
+    );
+  }
 
   void _navigateToSearch() {
+    // Note: Ensure SearchService is defined in your project
     Navigator.of(context).push(
       SearchPageRoute(
         page: BlocProvider(
@@ -78,25 +75,26 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
   }
 
   void _navigateToNotifications() {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => NotificationPage(), // Your actual page
-    ),
-  );
-}
+    // Note: Ensure NotificationPage is defined in your project
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Scaffold(body: Center(child: Text('Notifications'))), 
+      ),
+    );
+  }
 
   void _openStoryViewer(BuildContext context, List<Story> stories, int index) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => StoryViewer(
-        stories: stories,
-        initialIndex: index,
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StoryViewer(
+          stories: stories,
+          initialIndex: index,
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,12 +107,11 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
             child: RefreshIndicator(
               key: _refreshIndicatorKey,
               onRefresh: _handleRefresh,
-              edgeOffset: 100, // spinner appears behind SliverAppBar
+              edgeOffset: 100,
               color: Colors.blueAccent,
               child: CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  // ----------------- Floating Snap AppBar -----------------
                   SliverAppBar(
                     floating: true,
                     snap: true,
@@ -140,33 +137,13 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
                       ],
                     ),
                     actions: [
-                      // Notification icon with badge
-                      Stack(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.notifications_outlined,
-                                color: Colors.black87),
-                            onPressed: _navigateToNotifications,
-                          ),
-                          // Add notification badge if needed
-                          // Positioned(
-                          //   right: 8,
-                          //   top: 8,
-                          //   child: Container(
-                          //     width: 8,
-                          //     height: 8,
-                          //     decoration: const BoxDecoration(
-                          //       color: Colors.red,
-                          //       shape: BoxShape.circle,
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
+                      IconButton(
+                        icon: const Icon(Icons.notifications_outlined,
+                            color: Colors.black87),
+                        onPressed: _navigateToNotifications,
                       ),
                     ],
                   ),
-
-                  // ----------------- Stories -----------------
                   if (state is DashboardLoaded && state.stories.isNotEmpty)
                     SliverToBoxAdapter(
                       child: SizedBox(
@@ -189,8 +166,6 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
                         ),
                       ),
                     ),
-
-                  // ----------------- Posts -----------------
                   if (state is DashboardInitial || state is DashboardLoading)
                     const SliverFillRemaining(
                         child: Center(child: CircularProgressIndicator()))
@@ -203,8 +178,6 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
                         childCount: state.posts.length,
                       ),
                     ),
-
-                  // ----------------- Loading More Indicator -----------------
                   if (state is DashboardLoadingMore)
                     const SliverToBoxAdapter(
                       child: Padding(
@@ -212,9 +185,9 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
                         child: Center(child: CircularProgressIndicator()),
                       ),
                     ),
-
-                  // ----------------- End of Feed -----------------
-                  if (state is DashboardLoaded && state.posts.isNotEmpty && !state.hasMorePosts)
+                  if (state is DashboardLoaded &&
+                      state.posts.isNotEmpty &&
+                      !state.hasMorePosts)
                     const SliverToBoxAdapter(
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: 20),
@@ -231,17 +204,14 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-  onPressed: () => _showCreatePostModal(context),
-  backgroundColor: Colors.blueAccent,
-  child: const Icon(Icons.add, color: Colors.white),
-),
+            onPressed: () => _showCreatePostModal(context),
+            backgroundColor: Colors.blueAccent,
+            child: const Icon(Icons.add, color: Colors.white),
           ),
         );
       },
     );
   }
-
-  // ----------------- Helpers -----------------
 
   Widget _buildAddStory() {
     return Container(
@@ -259,8 +229,8 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
             child: const Icon(Icons.add, color: Colors.blueAccent, size: 30),
           ),
           const SizedBox(height: 8),
-          const Text('Your Story', 
-            style: TextStyle(fontSize: 12, color: Colors.grey)),
+          const Text('Your Story',
+              style: TextStyle(fontSize: 12, color: Colors.grey)),
         ],
       ),
     );
@@ -293,7 +263,6 @@ class _HomeFeedPageState extends State<HomeFeedPage> {
   }
 }
 
-// ----------------- Search Field -----------------
 class _SearchField extends StatelessWidget {
   final VoidCallback onTap;
   const _SearchField({required this.onTap});
