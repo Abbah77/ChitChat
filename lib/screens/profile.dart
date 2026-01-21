@@ -1012,8 +1012,8 @@ Widget _buildAnimatedStatsSection(ProfileLoaded state) {
     ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [  // ✅ ADD THIS
         _AnimatedStatItem(
-      children: [
           count: state.posts.length,
           label: 'Posts',
           onTap: () => _tabController.animateTo(0),
@@ -1037,11 +1037,10 @@ Widget _buildAnimatedStatsSection(ProfileLoaded state) {
           onTap: () => _showStoriesModal(context, state),
           color: Colors.orangeAccent,
         ),
-      ],
+      ],  // ✅ CLOSE THE CHILDREN LIST
     ),
   );
 }
-
 class _AnimatedStatItem extends StatefulWidget {
   final int count;
   final String label;
