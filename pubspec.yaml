@@ -11,100 +11,92 @@ dependencies:
     sdk: flutter
 
   # ============ CORE & ARCHITECTURE ============
-  flutter_bloc: ^8.1.3                    # State management
-  provider: ^6.1.1                        # Dependency injection companion to BLoC
-  get_it: ^7.6.4                          # Service locator for dependency injection
-  equatable: ^2.0.5                       # Value equality for models
-  dartz: ^0.10.1                          # Functional programming helpers
+  flutter_bloc: ^8.1.3
+  provider: ^6.1.1
+  get_it: ^7.6.4
+  equatable: ^2.0.5
+  dartz: ^0.10.1
 
   # ============ HTTP & NETWORKING ============
-  http: ^1.2.1                            # Updated for null safety fixes
+  http: ^1.2.1
   web_socket_channel: ^2.3.0
-  socket_io_client: ^2.0.3                # For Socket.io support
-  dio: ^5.4.0                             # Enhanced HTTP client with interceptors
-  connectivity_plus: ^4.0.3
+  socket_io_client: ^2.0.3
+  dio: ^5.4.0
+  connectivity_plus: ^5.0.2        # Merged and updated to latest
   
   # ============ STORAGE & CACHING ============
-  flutter_secure_storage: ^9.0.0          # Updated for Flutter 3.x compatibility
-  shared_preferences: ^2.2.2              # For non-sensitive preferences
-  hive: ^2.2.3                            # Fast local database
+  flutter_secure_storage: ^9.0.0
+  shared_preferences: ^2.2.2
+  hive: ^2.2.3
   hive_flutter: ^1.1.0
+  path_provider: ^2.1.0            # Added from your duplicate section
   
   # ============ IMAGE & MEDIA ============
   cached_network_image: ^3.2.3
-  photo_view: ^0.14.0                     # For zoomable images
+  photo_view: ^0.14.0
   video_player: ^2.8.3
-  chewie: ^1.5.2                          # Enhanced video player controls
+  chewie: ^1.5.2
   
   # ============ UI & ANIMATION ============
   material_color_utilities: ^0.8.0
-  flutter_svg: ^2.0.9                     # For SVG assets
-  shimmer: ^3.0.0                         # Loading placeholders
-  lottie: ^2.7.0                          # For animations
-  google_fonts: ^6.1.0                    # Font management
+  flutter_svg: ^2.0.9
+  shimmer: ^3.0.0
+  lottie: ^2.7.0
+  google_fonts: ^6.1.0
   
   # ============ UTILITIES ============
   intl: ^0.19.0
-  uuid: ^3.0.7                            # For unique IDs
-  url_launcher: ^6.2.2                    # For opening links
-  package_info_plus: ^4.2.2               # App info
-  device_info_plus: ^9.1.0                # Device info
+  uuid: ^3.0.7
+  url_launcher: ^6.2.2
+  package_info_plus: ^4.2.2
+  device_info_plus: ^9.1.0
   
   # ============ FORMS & VALIDATION ============
-  flutter_form_builder: ^9.1.0            # Updated - major version with critical fixes
+  flutter_form_builder: ^9.1.0
   
   # ============ SECURITY ============
-  encrypt: ^5.0.3                         # Updated for security fixes
-  flutter_dotenv: ^5.1.0                  # Environment variables
+  encrypt: ^5.0.3
+  flutter_dotenv: ^5.1.0
   
   # ============ LOGGING & DEBUG ============
-  logger: ^2.0.2                          # Structured logging
+  logger: ^2.0.2
 
   # ============ ANALYTICS & CRASH REPORTING ============
-  firebase_core: ^3.4.1                   # For Firebase services
-  firebase_analytics: ^10.7.2             # Analytics
-  firebase_crashlytics: ^3.2.6            # Crash reporting
-  firebase_messaging: ^14.7.5             # Push notifications
+  firebase_core: ^3.4.1
+  firebase_analytics: ^10.7.2
+  firebase_crashlytics: ^3.2.6
+  firebase_messaging: ^14.7.5
   
   # ============ PERMISSIONS ============
-  permission_handler: ^10.4.4             # Required for camera/mic/gallery access
+  permission_handler: ^10.4.4
   
   # ============ FILE HANDLING ============
-  file_picker: ^5.3.3                     # For picking images/files
-  image_picker: ^1.0.4                    # For camera/gallery
-  image_cropper: ^4.0.1                   # For image cropping
+  file_picker: ^5.3.3
+  image_picker: ^1.0.4
+  image_cropper: ^4.0.1
   
   # ============ VIDEO CALLING ============
-  agora_rtc_engine: ^6.2.1                # For video chat (if needed)
+  agora_rtc_engine: ^6.2.1
   
   # ============ PERFORMANCE ============
-  flutter_native_splash: ^2.3.7           # For splash screen optimization
-  # workmanager: ^0.5.1                   # UNCOMMENT if you need background tasks
+  flutter_native_splash: ^2.3.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
-  # ============ CODE QUALITY & LINTING ============
-  very_good_analysis: ^5.1.0              # Comprehensive lint rules
-  
-  # ============ TESTING ============
-  mockito: ^5.4.2                         # For mocking
-  bloc_test: ^9.1.5                       # BLoC testing
-  test: ^1.24.0                           # Additional testing utilities
-  
-  # ============ BUILD & DEVELOPMENT ============
+  very_good_analysis: ^5.1.0
+  mockito: ^5.4.2
+  bloc_test: ^9.1.5
+  test: ^1.24.0
   build_runner: ^2.4.7
-  hive_generator: ^1.1.3                  # For Hive type adapters
-  json_serializable: ^6.7.1               # For JSON serialization
-  
-  # ============ PERFORMANCE & ANALYSIS ============
-  flutter_flavorizr: ^3.0.1               # For build flavors (dev/staging/prod)
+  hive_generator: ^1.1.3
+  json_serializable: ^6.7.1
+  flutter_flavorizr: ^3.0.1
 
 flutter:
   uses-material-design: true
   
-  # ============ ASSETS ============
+  # Ensure these folders exist in your project or the bot will error!
   assets:
     - assets/images/logo.png
     - assets/images/splash.png
@@ -113,7 +105,6 @@ flutter:
     - assets/lang/
     - assets/fonts/
   
-  # ============ FONTS ============
   fonts:
     - family: Inter
       fonts:
@@ -132,9 +123,3 @@ flutter:
           weight: 400
         - asset: assets/fonts/RobotoMono-Medium.ttf
           weight: 500
-
-dependencies:
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  path_provider: ^2.1.0
-  connectivity_plus: ^5.0.2
