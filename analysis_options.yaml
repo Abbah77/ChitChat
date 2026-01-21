@@ -1,0 +1,74 @@
+# analysis_options.yaml
+
+include: package:very_good_analysis/analysis_options.yaml
+
+# Custom overrides for your project
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  
+  errors:
+    # Allow TODO comments but treat them as warnings
+    todo: warning
+    
+    # Allow deprecated members usage (but warn)
+    deprecated_member_use: warning
+    
+    # Allow unused imports (but warn)
+    unused_import: warning
+  
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/*.gr.dart'
+    - '**/*.mocks.dart'
+    - 'build/**'
+    - '.dart_tool/**'
+    - '.idea/**'
+    - '.vscode/**'
+    - '**/generated/**'
+    - '**/coverage/**'
+    - '**/test/**'  # Exclude test files from production analysis
+
+# Custom lint rules
+linter:
+  rules:
+    # ============ SECURITY ============
+    - use_key_in_widget_constructors
+    - prefer_const_constructors
+    - prefer_const_literals_to_create_immutables
+    
+    # ============ PERFORMANCE ============
+    - avoid_unnecessary_containers
+    - sized_box_for_whitespace
+    - avoid_print  # Use logger instead
+    - avoid_web_libraries_in_flutter
+    
+    # ============ MAINTAINABILITY ============
+    - prefer_final_fields
+    - prefer_final_locals
+    - avoid_redundant_argument_values
+    - lines_longer_than_80_chars: false  # Disable - too restrictive for Flutter
+    - always_declare_return_types
+    - type_init_formals
+    
+    # ============ STYLE ============
+    - prefer_single_quotes
+    - file_names
+    - constant_identifier_names
+    - camel_case_types
+    
+    # ============ ERROR PREVENTION ============
+    - null_closures
+    - unnecessary_null_comparison
+    - unnecessary_nullable_for_final_variable_declarations
+    
+    # Disabled rules (common in Flutter projects)
+    - avoid_empty_else: false
+    - avoid_returning_null: false
+    - prefer_typing_uninitialized_variables: false
+
+# Additional analyzer plugins (if needed)
+# plugins:
+#   - dart_code_metrics

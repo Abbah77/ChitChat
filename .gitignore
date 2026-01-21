@@ -1,0 +1,26 @@
+# Ignore Android files
+android/.idea/
+android/.gradle/
+android/local.properties
+android/build.gradle
+
+# Ignore iOS files
+ios/.symlinks/
+ios/Flutter/
+ios/Podfile.lock
+ios/pods/
+
+# Ignore other files
+pubspec.lock
+.packages
+.build/
+.dart_tool/
+
+# Ignore metadata files
+*.meta
+
+# Ignore flutter logs
+*.log
+
+# Ignore tmp files
+*.tmp

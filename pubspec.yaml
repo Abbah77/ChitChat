@@ -1,0 +1,140 @@
+name: chitchat
+description: A secure social chat application with real-time messaging and video features
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ============ CORE & ARCHITECTURE ============
+  flutter_bloc: ^8.1.3                    # State management
+  provider: ^6.1.1                        # Dependency injection companion to BLoC
+  get_it: ^7.6.4                          # Service locator for dependency injection
+  equatable: ^2.0.5                       # Value equality for models
+  dartz: ^0.10.1                          # Functional programming helpers
+
+  # ============ HTTP & NETWORKING ============
+  http: ^1.2.1                            # Updated for null safety fixes
+  web_socket_channel: ^2.3.0
+  socket_io_client: ^2.0.3                # For Socket.io support
+  dio: ^5.4.0                             # Enhanced HTTP client with interceptors
+  connectivity_plus: ^4.0.3
+  
+  # ============ STORAGE & CACHING ============
+  flutter_secure_storage: ^9.0.0          # Updated for Flutter 3.x compatibility
+  shared_preferences: ^2.2.2              # For non-sensitive preferences
+  hive: ^2.2.3                            # Fast local database
+  hive_flutter: ^1.1.0
+  
+  # ============ IMAGE & MEDIA ============
+  cached_network_image: ^3.2.3
+  photo_view: ^0.14.0                     # For zoomable images
+  video_player: ^2.8.3
+  chewie: ^1.5.2                          # Enhanced video player controls
+  
+  # ============ UI & ANIMATION ============
+  material_color_utilities: ^0.8.0
+  flutter_svg: ^2.0.9                     # For SVG assets
+  shimmer: ^3.0.0                         # Loading placeholders
+  lottie: ^2.7.0                          # For animations
+  google_fonts: ^6.1.0                    # Font management
+  
+  # ============ UTILITIES ============
+  intl: ^0.19.0
+  uuid: ^3.0.7                            # For unique IDs
+  url_launcher: ^6.2.2                    # For opening links
+  package_info_plus: ^4.2.2               # App info
+  device_info_plus: ^9.1.0                # Device info
+  
+  # ============ FORMS & VALIDATION ============
+  flutter_form_builder: ^9.1.0            # Updated - major version with critical fixes
+  
+  # ============ SECURITY ============
+  encrypt: ^5.0.3                         # Updated for security fixes
+  flutter_dotenv: ^5.1.0                  # Environment variables
+  
+  # ============ LOGGING & DEBUG ============
+  logger: ^2.0.2                          # Structured logging
+
+  # ============ ANALYTICS & CRASH REPORTING ============
+  firebase_core: ^3.4.1                   # For Firebase services
+  firebase_analytics: ^10.7.2             # Analytics
+  firebase_crashlytics: ^3.2.6            # Crash reporting
+  firebase_messaging: ^14.7.5             # Push notifications
+  
+  # ============ PERMISSIONS ============
+  permission_handler: ^10.4.4             # Required for camera/mic/gallery access
+  
+  # ============ FILE HANDLING ============
+  file_picker: ^5.3.3                     # For picking images/files
+  image_picker: ^1.0.4                    # For camera/gallery
+  image_cropper: ^4.0.1                   # For image cropping
+  
+  # ============ VIDEO CALLING ============
+  agora_rtc_engine: ^6.2.1                # For video chat (if needed)
+  
+  # ============ PERFORMANCE ============
+  flutter_native_splash: ^2.3.7           # For splash screen optimization
+  # workmanager: ^0.5.1                   # UNCOMMENT if you need background tasks
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # ============ CODE QUALITY & LINTING ============
+  very_good_analysis: ^5.1.0              # Comprehensive lint rules
+  
+  # ============ TESTING ============
+  mockito: ^5.4.2                         # For mocking
+  bloc_test: ^9.1.5                       # BLoC testing
+  test: ^1.24.0                           # Additional testing utilities
+  
+  # ============ BUILD & DEVELOPMENT ============
+  build_runner: ^2.4.7
+  hive_generator: ^1.1.3                  # For Hive type adapters
+  json_serializable: ^6.7.1               # For JSON serialization
+  
+  # ============ PERFORMANCE & ANALYSIS ============
+  flutter_flavorizr: ^3.0.1               # For build flavors (dev/staging/prod)
+
+flutter:
+  uses-material-design: true
+  
+  # ============ ASSETS ============
+  assets:
+    - assets/images/logo.png
+    - assets/images/splash.png
+    - assets/icons/
+    - assets/animations/
+    - assets/lang/
+    - assets/fonts/
+  
+  # ============ FONTS ============
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+    
+    - family: RobotoMono
+      fonts:
+        - asset: assets/fonts/RobotoMono-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/RobotoMono-Medium.ttf
+          weight: 500
+
+dependencies:
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.0
+  connectivity_plus: ^5.0.2
