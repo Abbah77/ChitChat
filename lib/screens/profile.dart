@@ -2270,4 +2270,4 @@ class UsersListModal extends StatelessWidget {
       ),
     );
   }
-}
+} // This is the final closing bracket for the class and the file.
