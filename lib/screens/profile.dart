@@ -1012,8 +1012,8 @@ Widget _buildAnimatedStatsSection(ProfileLoaded state) {
     ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
         _AnimatedStatItem(
+      children: [
           count: state.posts.length,
           label: 'Posts',
           onTap: () => _tabController.animateTo(0),
